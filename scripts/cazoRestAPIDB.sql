@@ -3,90 +3,90 @@
 USE `cazoRestAPIDB`;
 
 /*CREATE TABLE `documentos`(
-	`documentos_id` BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
-    `documentos_tipo` ENUM("DNI", "LE", "LC", "CI"),
-    `documentos_valor` VARCHAR(20) NOT NULL
+	`documento_id` BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
+    `documento_tipo` ENUM("DNI", "LE", "LC", "CI"),
+    `documento_valor` VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE `procedencias`(
-	`procedencias_id` BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
-    `procedencias_nac` VARCHAR(100) NOT NULL,
-    `procedencias_prov` VARCHAR(100) NOT NULL,
-    `procedencias_ciudad` VARCHAR(100) NOT NULL,
-    `procedencias_loc` VARCHAR(100) NOT NULL,
-    `procedencias_dir` VARCHAR(100) NOT NULL,
-    `procedencias_dir_num` INT NOT NULL,
-    `procedencias_cod` VARCHAR(10) NOT NULL
+	`procedencia_id` BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
+    `procedencia_nac` VARCHAR(100) NOT NULL,
+    `procedencia_prov` VARCHAR(100) NOT NULL,
+    `procedencia_ciudad` VARCHAR(100) NOT NULL,
+    `procedencia_loc` VARCHAR(100) NOT NULL,
+    `procedencia_dir` VARCHAR(100) NOT NULL,
+    `procedencia_dir_num` INT NOT NULL,
+    `procedencia_cod` VARCHAR(10) NOT NULL
 );
 
 CREATE TABLE `imagenes`(
-	`imagenes_id` BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
-    `imagenes_mime` VARCHAR(255),
-    `imagenes_nombre` VARCHAR(255),
-    `imagenes_contenido` LONGBLOB
+	`imagen_id` BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
+    `imagen_mime` VARCHAR(255),
+    `imagen_nombre` VARCHAR(255),
+    `imagen_contenido` LONGBLOB
 );
 
 CREATE TABLE `usuarios`(
-	`usuarios_id` BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
-    `usuarios_nombre` VARCHAR(50) NOT NULL,
-    `usuarios_clave` VARCHAR(255) NOT NULL,
-    `usuarios_clave_rep` VARCHAR(255) NOT NULL,
-    `usuarios_tipo` ENUM("NORMAL", "ADMINISTRADOR") DEFAULT "NORMAL",
-    `imagenes_id` BIGINT(20),
-    CONSTRAINT `fk_foto_usuario` FOREIGN KEY(`imagenes_id`) REFERENCES `imagenes`(`imagenes_id`)
+	`usuario_id` BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
+    `usuario_nombre` VARCHAR(50) NOT NULL,
+    `usuario_clave` VARCHAR(255) NOT NULL,
+    `usuario_clave_rep` VARCHAR(255) NOT NULL,
+    `usuario_tipo` ENUM("NORMAL", "ADMINISTRADOR") DEFAULT "NORMAL",
+    `imagen_id` BIGINT(20),
+    CONSTRAINT `fk_foto_usuario` FOREIGN KEY(`imagen_id`) REFERENCES `imagenes`(`imagen_id`)
 );
 
 CREATE TABLE `socios`(
-	`socios_id` BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
-    `socios_nombre` VARCHAR(50) NOT NULL,
-    `socios_apellido` VARCHAR(50) NOT NULL,
-    `socios_sexo` ENUM("MASCULINO", "FEMENINO", "OTRO") NOT NULL,
-    `socios_fecha_nac` DATE NOT NULL,
-    `socios_telefono` VARCHAR(20) NOT NULL,
-    `socios_correo` VARCHAR(255) NOT NULL,
-    `usuarios_id` BIGINT(20),
-    `documentos_id` BIGINT(20),
-    `procedencias_id` BIGINT(20),
-    CONSTRAINT `fk_socio_usuario` FOREIGN KEY(`usuarios_id`) REFERENCES `usuarios`(`usuarios_id`),
-    CONSTRAINT `fk_socio_documento` FOREIGN KEY(`documentos_id`) REFERENCES `documentos`(`documentos_id`),
-    CONSTRAINT `fk_socio_procedencia` FOREIGN KEY(`procedencias_id`) REFERENCES `procedencias`(`procedencias_id`)
+	`socio_id` BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
+    `socio_nombre` VARCHAR(50) NOT NULL,
+    `socio_apellido` VARCHAR(50) NOT NULL,
+    `socio_sexo` ENUM("MASCULINO", "FEMENINO", "OTRO") NOT NULL,
+    `socio_fecha_nac` DATE NOT NULL,
+    `socio_telefono` VARCHAR(20) NOT NULL,
+    `socio_correo` VARCHAR(255) NOT NULL,
+    `usuario_id` BIGINT(20),
+    `documento_id` BIGINT(20),
+    `procedencia_id` BIGINT(20),
+    CONSTRAINT `fk_socio_usuario` FOREIGN KEY(`usuario_id`) REFERENCES `usuarios`(`usuario_id`),
+    CONSTRAINT `fk_socio_documento` FOREIGN KEY(`documento_id`) REFERENCES `documentos`(`documento_id`),
+    CONSTRAINT `fk_socio_procedencia` FOREIGN KEY(`procedencia_id`) REFERENCES `procedencias`(`procedencia_id`)
 );
 
 CREATE TABLE `actividades`(
-	`actividades_id` BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
-    `actividades_nombre` VARCHAR(50) NOT NULL
+	`actividad_id` BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
+    `actividad_nombre` VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE `actividades_tipo`(
-	`actividades_tipo_id` BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
-    `actividades_tipo_nombre` VARCHAR(50) NOT NULL,
-    `actividades_tipo_descripcion` VARCHAR(255) NOT NULL,
-    `actividades_id` BIGINT(20),
-    CONSTRAINT `fk_actividad_actividad_tipo` FOREIGN KEY(`actividades_id`) REFERENCES `actividades`(`actividades_id`)
+	`actividad_tipo_id` BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
+    `actividad_tipo_nombre` VARCHAR(50) NOT NULL,
+    `actividad_tipo_descripcion` VARCHAR(255) NOT NULL,
+    `actividad_id` BIGINT(20),
+    CONSTRAINT `fk_actividad_actividad_tipo` FOREIGN KEY(`actividad_id`) REFERENCES `actividades`(`actividad_id`)
 );
 
 CREATE TABLE `tarjetas`(
-	`tarjetas_id` BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
-    `tarjetas_nombre_completo` VARCHAR(255) NOT NULL,
-    `tarjetas_numero` VARCHAR(19) NOT NULL,
-    `tarjetas_cvc` VARCHAR(3) NOT NULL,
-    `tarjetas_fecha_vencimiento` DATE NOT NULL
+	`tarjeta_id` BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
+    `tarjeta_nombre_completo` VARCHAR(255) NOT NULL,
+    `tarjeta_numero` VARCHAR(19) NOT NULL,
+    `tarjeta_cvc` VARCHAR(3) NOT NULL,
+    `tarjeta_fecha_vencimiento` DATE NOT NULL
 );
 
 CREATE TABLE `metodos_pago`(
-	`metodos_pago_id` BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
-    `metodos_pago_tipo` ENUM("Tarjeta de débito", "Tarjeta de cŕedito") NOT NULL,
-    `tarjetas_id` BIGINT(20),
-    CONSTRAINT `fk_metodo_pago_tarjeta` FOREIGN KEY(`tarjetas_id`) REFERENCES `tarjetas`(`tarjetas_id`)
+	`metodo_pago_id` BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
+    `metodo_pago_tipo` ENUM("Tarjeta de débito", "Tarjeta de cŕedito") NOT NULL,
+    `tarjeta_id` BIGINT(20),
+    CONSTRAINT `fk_metodo_pago_tarjeta` FOREIGN KEY(`tarjeta_id`) REFERENCES `tarjetas`(`tarjeta_id`)
 );
 
 CREATE TABLE `reservas`(
-	`reservas_id` BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
-    `reservas_fecha` DATE NOT NULL,
-    `actividades_id` BIGINT(20),
-    `actividades_tipo_id` BIGINT(20),
-    `usuarios_id` BIGINT(20),
-    CONSTRAINT `fk_reserva_actividad` FOREIGN KEY(`actividades_id`) REFERENCES `actividades`(`actividades_id`),
-    CONSTRAINT `fk_reserva_actividad_tipo` FOREIGN KEY(`actividades_tipo_id`) REFERENCES `actividades_tipo`(`actividades_tipo_id`),
-    CONSTRAINT `fk_reserva_usuario` FOREIGN KEY(`usuarios_id`) REFERENCES `usuarios`(`usuarios_id`)
+	`reserva_id` BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
+    `reserva_fecha` DATE NOT NULL,
+    `actividad_id` BIGINT(20),
+    `actividad_tipo_id` BIGINT(20),
+    `usuario_id` BIGINT(20),
+    CONSTRAINT `fk_reserva_actividad` FOREIGN KEY(`actividad_id`) REFERENCES `actividades`(`actividad_id`),
+    CONSTRAINT `fk_reserva_actividad_tipo` FOREIGN KEY(`actividad_tipo_id`) REFERENCES `actividades_tipo`(`actividad_tipo_id`),
+    CONSTRAINT `fk_reserva_usuario` FOREIGN KEY(`usuario_id`) REFERENCES `usuarios`(`usuario_id`)
 );*/
