@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import cazo.restAPI.entity.Documento;
 
 @Repository
-public interface DocumentoRepository extends JpaRepository<Long, Documento>{
+public interface DocumentoRepository extends JpaRepository<Documento, Long>{
 
 }

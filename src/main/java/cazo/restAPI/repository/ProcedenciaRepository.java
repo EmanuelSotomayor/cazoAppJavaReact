@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import cazo.restAPI.entity.Procedencia;
 
 @Repository
-public interface ProcedenciaRepository extends JpaRepository<Long, Procedencia>{
+public interface ProcedenciaRepository extends JpaRepository<Procedencia, Long>{
 
 }

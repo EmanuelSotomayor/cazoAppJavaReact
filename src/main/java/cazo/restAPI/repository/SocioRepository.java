@@ -5,6 +5,5 @@ import org.springframework.stereotype.Repository;
 import cazo.restAPI.entity.Socio;
 
 @Repository
-public interface SocioRepository extends JpaRepository<Long, Socio>{
-
+public interface SocioRepository extends JpaRepository<Socio, Long>{
 }
