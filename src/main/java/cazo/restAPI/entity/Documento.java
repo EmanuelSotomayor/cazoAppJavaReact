@@ -20,7 +20,7 @@ public class Documento{
 	private Long id;
 	
 	@Enumerated(EnumType.STRING)
-	@Column(name = "documento_tipo", nullable = false)
+	@Column(name = "documento_tipo", columnDefinition = "ENUM('DNI', 'LE', 'LC', 'CI')",nullable = false)
 	private TipoDocumento tipo;
 	
 	@Column(name = "documento_valor", length = 20, nullable = false)
