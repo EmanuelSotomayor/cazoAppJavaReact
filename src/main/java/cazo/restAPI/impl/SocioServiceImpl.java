@@ -1,6 +1,7 @@
 package cazo.restAPI.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,8 @@ public class SocioServiceImpl implements SocioService{
 	}
 
 	@Override
-	public Socio editarSocioPorId(Socio socio) {
+	public Socio editarSocioPorId(Long id, Socio socio) {
+		Optional<Socio> socioPresente = socioRepo.findById(id);
 		return null;
 	}
 

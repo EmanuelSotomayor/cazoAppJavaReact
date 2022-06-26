@@ -16,7 +16,7 @@ public class ProcedenciaServiceImpl implements ProcedenciaService{
 	}
 
 	@Override
-	public Procedencia editarProcedenciaPorId(Procedencia procedencia) {
+	public Procedencia editarProcedenciaPorId(Long id, Procedencia procedencia) {
 		// TODO Auto-generated method stub
 		return null;
 	}

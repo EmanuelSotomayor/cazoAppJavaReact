@@ -16,7 +16,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 	}
 
 	@Override
-	public Usuario editarUsuarioPorId(Usuario usuario) {
+	public Usuario editarUsuarioPorId(Long id, Usuario usuario) {
 		// TODO Auto-generated method stub
 		return null;
 	}
