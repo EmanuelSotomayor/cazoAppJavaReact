@@ -16,7 +16,7 @@ public class DocumentoServiceImpl implements DocumentoService{
 	}
 
 	@Override
-	public Documento editarDocumento(Documento documento) {
+	public Documento editarDocumentoPorId(Documento documento) {
 		// TODO Auto-generated method stub
 		return null;
 	}
