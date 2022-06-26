@@ -5,7 +5,7 @@ import cazo.restAPI.entity.Usuario;
 
 public interface UsuarioService {
 	public Usuario guardarUsuario(Usuario usuario);
-	public Usuario editarUsuario(Usuario usuario);
+	public Usuario editarUsuarioPorId(Long id, Usuario usuario);
 	public void eliminarUsuarioPorId(Long id);
 	public Usuario buscarUsuarioPorId(Long id);
 	public List<Usuario> listarUsuarios();

@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import cazo.restAPI.entity.Usuario;
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<Long, Usuario>{
+public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
 
 }
